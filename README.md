@@ -1,5 +1,8 @@
-# Calculator
+# Calculator   ![Alt text](https://github.com/BalkanBasileus/Calculator/blob/master/Screenshots/Arithmetic-Symbol.png?raw=false "Optional Title")
+
+
 Basic JavaFx Desktop calculator
+
 
 Written in Java SE 8 using:
 
