@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class CalculatorController {
 
@@ -19,6 +21,8 @@ public class CalculatorController {
     private boolean percentHit = false; //If a % has been calculated.
     private String percent = "";        //Displays % in historyPrompt.
     boolean equalButtonHit = false;
+
+    NumberFormat formatter = new DecimalFormat("#0.00"); //Format decimal display.
 
     @FXML
     private ResourceBundle resources;
@@ -296,69 +300,69 @@ public class CalculatorController {
 
             case 'x' :
 
-                String valueMult = calcDisplay.getText();             //get second num
+                String valueMult = calcDisplay.getText();                 //get second num
                 this.secondNum = Double.parseDouble(valueMult);
-                double answerMult = (this.firstNum * this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerMult));      //display answer
+                double answerMult = (this.firstNum * this.secondNum);     //arithmetic
+                calcDisplay.setText( String.valueOf(formatter.format(answerMult) ) );     //display answer
                 String prevHistMult = historyPrompt.getText();
 
                 if(percentHit){
-                    historyPrompt.setText(prevHistMult + " " + percent + " = " + answerMult);
+                    historyPrompt.setText(prevHistMult + " " + percent + " = " + formatter.format(answerMult) );
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistMult + " " + valueMult + " = " + answerMult);
+                    historyPrompt.setText(prevHistMult + " " + valueMult + " = " + formatter.format(answerMult) );
                 }
                 break;
 
             case '-' :
 
-                String valueSub = calcDisplay.getText();             //get second num
+                String valueSub = calcDisplay.getText();                 //get second num
                 this.secondNum = Double.parseDouble(valueSub);
-                double answerSub = (this.firstNum - this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerSub));      //display answer
+                double answerSub = (this.firstNum - this.secondNum);     //arithmetic
+                calcDisplay.setText( String.valueOf(formatter.format(answerSub)) );     //display answer
                 String prevHistSub = historyPrompt.getText();
 
                 if(percentHit){
-                    historyPrompt.setText(prevHistSub + " " + percent + " = " + answerSub);
+                    historyPrompt.setText(prevHistSub + " " + percent + " = " + formatter.format(answerSub) );
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistSub + " " + valueSub + " = " + answerSub);
+                    historyPrompt.setText(prevHistSub + " " + valueSub + " = " + formatter.format(answerSub) );
                 }
                 break;
 
             case '+' :
 
-                String valueAdd = calcDisplay.getText();             //get second num
+                String valueAdd = calcDisplay.getText();                  //get second num
                 this.secondNum = Double.parseDouble(valueAdd);
-                double answerAdd = (this.firstNum + this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerAdd));      //display answer
+                double answerAdd = (this.firstNum + this.secondNum);      //arithmetic
+                calcDisplay.setText( String.valueOf(formatter.format(answerAdd)) );     //display answer
                 String prevHistAdd = historyPrompt.getText();
 
                 if(percentHit){
-                    historyPrompt.setText(prevHistAdd + " " + percent + " = " + answerAdd);
+                    historyPrompt.setText(prevHistAdd + " " + percent + " = " + formatter.format(answerAdd) );
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistAdd + " " + valueAdd + " = " + answerAdd);
+                    historyPrompt.setText(prevHistAdd + " " + valueAdd + " = " + formatter.format(answerAdd) );
                 }
                 break;
 
             case '/' :
 
-                String valueDiv = calcDisplay.getText();             //get second num
+                String valueDiv = calcDisplay.getText();                   //get second num
                 this.secondNum = Double.parseDouble(valueDiv);
-                double answerDiv = (this.firstNum / this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerDiv));      //display answer
+                double answerDiv = (this.firstNum / this.secondNum);       //arithmetic
+                calcDisplay.setText( String.valueOf(formatter.format(answerDiv)) );     //display answer
                 String prevHistDiv = historyPrompt.getText();
 
                 if(percentHit){
-                    historyPrompt.setText(prevHistDiv + " " + percent + " = " + answerDiv);
+                    historyPrompt.setText(prevHistDiv + " " + percent + " = " + formatter.format(answerDiv) );
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistDiv + " " + valueDiv + " = " + answerDiv);
+                    historyPrompt.setText(prevHistDiv + " " + valueDiv + " = " + formatter.format(answerDiv) );
                 }
                 break;
         }
