@@ -1,3 +1,7 @@
+/*
+* Program description here..
+*
+* */
 package CalculatorPackage;
 
 import java.net.URL;
@@ -9,10 +13,12 @@ import javafx.event.ActionEvent;
 
 public class CalculatorController {
 
-    private double firstNum=0, secondNum=0;
-    private char operator; //Type of arithmetic
+    //Calculator Variables.
+    private double firstNum = 0, secondNum = 0;
+    private char operator;              //Type of arithmetic
     private boolean percentHit = false; //If a % has been calculated.
-    private String percent = ""; //Displays % in historyPrompt.
+    private String percent = "";        //Displays % in historyPrompt.
+    boolean equalButtonHit = false;
 
     @FXML
     private ResourceBundle resources;
@@ -26,32 +32,138 @@ public class CalculatorController {
     @FXML
     private Label historyPrompt;
 
-    @FXML
-    void buttonOne(ActionEvent event) { calcDisplay.appendText("1"); }
+    //Number Buttons
+    ////////////////////////////////////////////////////////////////////////////////
+    /*
+     * Number buttons check to see if user has punch equal button, if not, it
+     * will append the num pressed onto the screen. If equal has been pressed,
+     * it will clear screen and then set the new number. It then resets boolean.
+     */
 
     @FXML
-    void buttonTwo(ActionEvent event) { calcDisplay.appendText("2"); }
+    void buttonZero(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("0");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("0");
+        }
+
+    }
 
     @FXML
-    void buttonThree(ActionEvent event) { calcDisplay.appendText("3"); }
+    void buttonOne(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("1");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("1");
+        }
+    }
 
     @FXML
-    void buttonFive(ActionEvent event) { calcDisplay.appendText("5"); }
+    void buttonTwo(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("2");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("2");
+        }
+    }
 
     @FXML
-    void buttonSix(ActionEvent event) { calcDisplay.appendText("6"); }
+    void buttonThree(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("3");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("3");
+        }
+    }
 
     @FXML
-    void buttonFour(ActionEvent event) { calcDisplay.appendText("4"); }
+    void buttonFour(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("4");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("4");
+        }
+    }
 
     @FXML
-    void buttonSeven(ActionEvent event) { calcDisplay.appendText("7"); }
+    void buttonFive(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("5");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("5");
+        }
+    }
 
     @FXML
-    void buttonEight(ActionEvent event) { calcDisplay.appendText("8"); }
+    void buttonSix(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("6");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("6");
+        }
+    }
 
     @FXML
-    void buttonNine(ActionEvent event) { calcDisplay.appendText("9"); }
+    void buttonSeven(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("7");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("7");
+        }
+    }
+
+    @FXML
+    void buttonEight(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("8");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("8");
+        }
+    }
+
+    @FXML
+    void buttonNine(ActionEvent event) {
+
+        if(equalButtonHit){
+            calcDisplay.setText("9");
+            equalButtonHit = false;     //reset
+        }
+        else{
+            calcDisplay.appendText("9");
+        }
+    }
+
+
+    //Arithmetic Buttons
+    ////////////////////////////////////////////////////////////////////////////////
 
     @FXML//MULTIPLY
     void buttonMultiply(ActionEvent event) {
@@ -159,8 +271,6 @@ public class CalculatorController {
         }
     }
 
-    @FXML
-    void buttonZero(ActionEvent event) { calcDisplay.appendText("0"); }
 
     @FXML//DECIMAL
     void buttonDecimal(ActionEvent event) {     /**This needs work. Arithmetic with multiple decimals resets*/
@@ -180,61 +290,75 @@ public class CalculatorController {
 
         //Calculator Engine
 
+        equalButtonHit = true; //After answer if user hits another number, discard previous entry.
+
         switch (operator){
+
             case 'x' :
-                String valueMult = calcDisplay.getText(); //get second num
+
+                String valueMult = calcDisplay.getText();             //get second num
                 this.secondNum = Double.parseDouble(valueMult);
                 double answerMult = (this.firstNum * this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerMult)); //display answer
+                calcDisplay.setText(String.valueOf(answerMult));      //display answer
                 String prevHistMult = historyPrompt.getText();
+
                 if(percentHit){
-                    historyPrompt.setText(prevHistMult + percent + "=");
+                    historyPrompt.setText(prevHistMult + " " + percent + " = " + answerMult);
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistMult + valueMult + "=");
+                    historyPrompt.setText(prevHistMult + " " + valueMult + " = " + answerMult);
                 }
                 break;
+
             case '-' :
-                String valueSub = calcDisplay.getText(); //get second num
+
+                String valueSub = calcDisplay.getText();             //get second num
                 this.secondNum = Double.parseDouble(valueSub);
                 double answerSub = (this.firstNum - this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerSub)); //display answer
+                calcDisplay.setText(String.valueOf(answerSub));      //display answer
                 String prevHistSub = historyPrompt.getText();
+
                 if(percentHit){
-                    historyPrompt.setText(prevHistSub + percent + "=");
+                    historyPrompt.setText(prevHistSub + " " + percent + " = " + answerSub);
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistSub + valueSub + "=");
+                    historyPrompt.setText(prevHistSub + " " + valueSub + " = " + answerSub);
                 }
                 break;
+
             case '+' :
-                String valueAdd = calcDisplay.getText(); //get second num
+
+                String valueAdd = calcDisplay.getText();             //get second num
                 this.secondNum = Double.parseDouble(valueAdd);
                 double answerAdd = (this.firstNum + this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerAdd)); //display answer
+                calcDisplay.setText(String.valueOf(answerAdd));      //display answer
                 String prevHistAdd = historyPrompt.getText();
+
                 if(percentHit){
-                    historyPrompt.setText(prevHistAdd + percent + "=");
+                    historyPrompt.setText(prevHistAdd + " " + percent + " = " + answerAdd);
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistAdd + valueAdd + "=");
+                    historyPrompt.setText(prevHistAdd + " " + valueAdd + " = " + answerAdd);
                 }
                 break;
+
             case '/' :
-                String valueDiv = calcDisplay.getText(); //get second num
+
+                String valueDiv = calcDisplay.getText();             //get second num
                 this.secondNum = Double.parseDouble(valueDiv);
                 double answerDiv = (this.firstNum / this.secondNum); //arithmetic
-                calcDisplay.setText(String.valueOf(answerDiv)); //display answer
+                calcDisplay.setText(String.valueOf(answerDiv));      //display answer
                 String prevHistDiv = historyPrompt.getText();
+
                 if(percentHit){
-                    historyPrompt.setText(prevHistDiv + percent + "=");
+                    historyPrompt.setText(prevHistDiv + " " + percent + " = " + answerDiv);
                     percentHit = false; //Reset
                 }
                 else{
-                    historyPrompt.setText(prevHistDiv + valueDiv + "=");
+                    historyPrompt.setText(prevHistDiv + " " + valueDiv + " = " + answerDiv);
                 }
                 break;
         }
