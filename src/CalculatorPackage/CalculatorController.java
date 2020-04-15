@@ -20,8 +20,15 @@ public class CalculatorController {
     private char operator;              //Type of arithmetic
     private boolean percentHit = false; //If a % has been calculated.
     private String percent = "";        //Displays % in historyPrompt.
+
     boolean equalButtonHit = false;
 
+    /*
+    boolean addButtonHit = false;
+    boolean subButtonHit = false;
+    boolean multButtonHit = false;
+    boolean divButtonHit = false;
+    */
     NumberFormat formatter = new DecimalFormat("#0.00"); //Format decimal display.
 
     @FXML
@@ -39,15 +46,20 @@ public class CalculatorController {
     //Number Buttons
     ////////////////////////////////////////////////////////////////////////////////
     /*
-     * Number buttons check to see if user has punch equal button, if not, it
-     * will append the num pressed onto the screen. If equal has been pressed,
-     * it will clear screen and then set the new number. It then resets boolean.
+     * Number buttons check if a computation has already been made. If there has not,
+     * it will append the button onto display. If equal button has been pressed AND
+     * the screen doesn't contain a decimal, it will set the button pressed onto the
+     * display. Otherwise if decimal button has been pressed it will append the number
+     * pressed onto the display. This prevents a bug where the screen resets the
+     * display when the user has already pressed the decimal button.
      */
 
     @FXML
     void buttonZero(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("0");
             equalButtonHit = false;     //reset
         }
@@ -60,7 +72,9 @@ public class CalculatorController {
     @FXML
     void buttonOne(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("1");
             equalButtonHit = false;     //reset
         }
@@ -72,7 +86,9 @@ public class CalculatorController {
     @FXML
     void buttonTwo(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("2");
             equalButtonHit = false;     //reset
         }
@@ -84,7 +100,9 @@ public class CalculatorController {
     @FXML
     void buttonThree(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("3");
             equalButtonHit = false;     //reset
         }
@@ -96,7 +114,9 @@ public class CalculatorController {
     @FXML
     void buttonFour(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("4");
             equalButtonHit = false;     //reset
         }
@@ -108,7 +128,9 @@ public class CalculatorController {
     @FXML
     void buttonFive(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("5");
             equalButtonHit = false;     //reset
         }
@@ -120,7 +142,9 @@ public class CalculatorController {
     @FXML
     void buttonSix(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("6");
             equalButtonHit = false;     //reset
         }
@@ -132,7 +156,9 @@ public class CalculatorController {
     @FXML
     void buttonSeven(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("7");
             equalButtonHit = false;     //reset
         }
@@ -144,7 +170,9 @@ public class CalculatorController {
     @FXML
     void buttonEight(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("8");
             equalButtonHit = false;     //reset
         }
@@ -156,7 +184,9 @@ public class CalculatorController {
     @FXML
     void buttonNine(ActionEvent event) {
 
-        if(equalButtonHit){
+        //If user already pressed equal button and want to use decimal button after, it won't
+        //reset display when they press number after decimal button.
+        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
             calcDisplay.setText("9");
             equalButtonHit = false;     //reset
         }
@@ -180,7 +210,7 @@ public class CalculatorController {
             double valueNumOne = Double.parseDouble(value);
             this.firstNum = valueNumOne;
             calcDisplay.setText("");
-            historyPrompt.setText(value + "x");
+            historyPrompt.setText(value + " x");
             operator = 'x';
         }
     }
@@ -196,7 +226,7 @@ public class CalculatorController {
             double valueNumOne = Double.parseDouble(value);
             this.firstNum = valueNumOne;
             calcDisplay.setText("");
-            historyPrompt.setText(value + "-");
+            historyPrompt.setText(value + " -");
             operator = '-';
         }
 
@@ -213,12 +243,12 @@ public class CalculatorController {
             double valueNumOne = Double.parseDouble(value);
             this.firstNum = valueNumOne;
             calcDisplay.setText("");
-            historyPrompt.setText(value + "+");
+            historyPrompt.setText(value + " +");
             operator = '+';
         }
     }
 
-    @FXML
+    @FXML //CLEAR
     void buttonClear(ActionEvent event) { //Clear everything.
         calcDisplay.setText("");
         historyPrompt.setText("");
@@ -226,7 +256,7 @@ public class CalculatorController {
         secondNum = 0;
     }
 
-    @FXML
+    @FXML //DELETE
     void buttonDel(ActionEvent event) {
 
         //If screen already empty.
@@ -270,23 +300,24 @@ public class CalculatorController {
             double valueNumOne = Double.parseDouble(value);
             this.firstNum = valueNumOne;
             calcDisplay.setText("");
-            historyPrompt.setText(value + '/');
+            historyPrompt.setText(value + " /");
             operator = '/';
         }
     }
 
 
     @FXML//DECIMAL
-    void buttonDecimal(ActionEvent event) {     /**This needs work. Arithmetic with multiple decimals resets*/
-        if (secondNum != 0) {
-            calcDisplay.setText("");
-            historyPrompt.setText("");
-            calcDisplay.setText(".");
-        }
-        else
-        {
-            calcDisplay.appendText(".");
-        }
+    void buttonDecimal(ActionEvent event) {   
+
+      //If display already contains a dot (if decimal button already pressed)
+      if( calcDisplay.getText().contains(".") ){
+        //Do nothing.
+      }
+
+      else{
+          calcDisplay.appendText(".");
+      }
+
     }
 
     @FXML
@@ -300,7 +331,7 @@ public class CalculatorController {
 
             case 'x' :
 
-                String valueMult = calcDisplay.getText();                 //get second num
+                String valueMult = calcDisplay.getText();                 //get second num from screen
                 this.secondNum = Double.parseDouble(valueMult);
                 double answerMult = (this.firstNum * this.secondNum);     //arithmetic
                 calcDisplay.setText( String.valueOf(formatter.format(answerMult) ) );     //display answer
@@ -317,7 +348,7 @@ public class CalculatorController {
 
             case '-' :
 
-                String valueSub = calcDisplay.getText();                 //get second num
+                String valueSub = calcDisplay.getText();                 //get second num from screen
                 this.secondNum = Double.parseDouble(valueSub);
                 double answerSub = (this.firstNum - this.secondNum);     //arithmetic
                 calcDisplay.setText( String.valueOf(formatter.format(answerSub)) );     //display answer
@@ -334,7 +365,7 @@ public class CalculatorController {
 
             case '+' :
 
-                String valueAdd = calcDisplay.getText();                  //get second num
+                String valueAdd = calcDisplay.getText();                  //get second num from screen
                 this.secondNum = Double.parseDouble(valueAdd);
                 double answerAdd = (this.firstNum + this.secondNum);      //arithmetic
                 calcDisplay.setText( String.valueOf(formatter.format(answerAdd)) );     //display answer
@@ -351,7 +382,7 @@ public class CalculatorController {
 
             case '/' :
 
-                String valueDiv = calcDisplay.getText();                   //get second num
+                String valueDiv = calcDisplay.getText();                   //get second num from screen
                 this.secondNum = Double.parseDouble(valueDiv);
                 double answerDiv = (this.firstNum / this.secondNum);       //arithmetic
                 calcDisplay.setText( String.valueOf(formatter.format(answerDiv)) );     //display answer
