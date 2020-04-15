@@ -14,9 +14,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="302.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CalculatorPackage.CalculatorController">
    <children>
-      <TextArea fx:id="calcDisplay" editable="false" focusTraversable="false" layoutY="-4.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="302.0" style="-fx-background-color: white; -fx-border-color: white;">
+      <TextArea fx:id="calcDisplay" editable="false" focusTraversable="false" layoutY="-4.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="302.0" style="-fx-background-color: white; -fx-border-color: white;">
          <font>
-            <Font size="24.0" />
+            <Font size="34.0" />
          </font>
          <cursor>
             <Cursor fx:constant="W_RESIZE" />
@@ -25,7 +25,7 @@
             <Insets />
          </opaqueInsets>
       </TextArea>
-      <Label fx:id="historyPrompt" alignment="CENTER_RIGHT" layoutY="36.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="302.0" style="-fx-background-color: white; -fx-border-color: white;" />
+      <Label fx:id="historyPrompt" alignment="CENTER_RIGHT" layoutY="45.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="302.0" style="-fx-background-color: white; -fx-border-color: white;" />
       <GridPane layoutY="70.0" prefHeight="257.0" prefWidth="302.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
