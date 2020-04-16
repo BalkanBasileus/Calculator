@@ -1,10 +1,13 @@
 /*
+* Authored by @BalkanBasileus
+*
 * Program description here..
 *
 * */
 package CalculatorPackage;
 
 import java.net.URL;
+import java.text.Format;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -17,11 +20,14 @@ public class CalculatorController {
 
     //Calculator Variables.
     private double firstNum = 0, secondNum = 0;
-    private char operator;              //Type of arithmetic
+    private char operator;              //Type of arithmetic for equal button
     private boolean percentHit = false; //If a % has been calculated.
     private String percent = "";        //Displays % in historyPrompt.
 
     boolean equalButtonHit = false;
+    private String precisionOne = "#0.0";
+    private String precisionTwo = "#0.00";
+    private String precisionThree = "#0.000";
 
     /*
     boolean addButtonHit = false;
@@ -29,7 +35,7 @@ public class CalculatorController {
     boolean multButtonHit = false;
     boolean divButtonHit = false;
     */
-    NumberFormat formatter = new DecimalFormat("#0.00"); //Format decimal display.
+    private NumberFormat formatter = new DecimalFormat(precisionTwo); //Format decimal display.
 
     @FXML
     private ResourceBundle resources;
@@ -307,7 +313,7 @@ public class CalculatorController {
 
 
     @FXML//DECIMAL
-    void buttonDecimal(ActionEvent event) {   
+    void buttonDecimal(ActionEvent event) {
 
       //If display already contains a dot (if decimal button already pressed)
       if( calcDisplay.getText().contains(".") ){
@@ -398,6 +404,32 @@ public class CalculatorController {
                 break;
         }
 
+    }
+
+    //Menu Buttons
+    ////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    void setPrecisionOne(ActionEvent event) {
+    //Set decimal place
+        formatter = new DecimalFormat(precisionOne);
+    }
+
+    @FXML
+    void setPrecisionTwo(ActionEvent event) {
+    //Set decimal place
+        formatter = new DecimalFormat(precisionTwo);
+    }
+
+    @FXML
+    void setPrecisionThree(ActionEvent event) {
+    //Set decimal place
+        formatter = new DecimalFormat(precisionThree);
+    }
+
+    @FXML
+    void menuClose(ActionEvent event) {
+    //Exit
+        System.exit(-1);
     }
 
     @FXML
