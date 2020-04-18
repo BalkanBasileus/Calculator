@@ -24,7 +24,8 @@ public class CalculatorController {
     private boolean percentHit = false; //If a % has been calculated.
     private String percent = "";        //Displays % in historyPrompt.
 
-    boolean equalButtonHit = false;     
+    boolean equalButtonHit = false;
+    boolean decimalButtonHit = false;
     private String precisionOne = "#0.0";
     private String precisionTwo = "#0.00";
     private String precisionThree = "#0.000";
@@ -65,9 +66,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("0");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("0");
@@ -80,9 +82,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("1");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("1");
@@ -94,9 +97,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("2");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("2");
@@ -108,9 +112,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("3");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("3");
@@ -122,9 +127,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("4");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("4");
@@ -136,9 +142,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("5");
             equalButtonHit = false;     //reset
+           // decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("5");
@@ -150,9 +157,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("6");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("6");
@@ -164,9 +172,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("7");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("7");
@@ -178,9 +187,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("8");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("8");
@@ -192,9 +202,10 @@ public class CalculatorController {
 
         //If user already pressed equal button and want to use decimal button after, it won't
         //reset display when they press number after decimal button.
-        if(equalButtonHit && !calcDisplay.getText().contains(".") ){
+        if( equalButtonHit ){
             calcDisplay.setText("9");
             equalButtonHit = false;     //reset
+            //decimalButtonHit = false;
         }
         else{
             calcDisplay.appendText("9");
@@ -260,6 +271,8 @@ public class CalculatorController {
         historyPrompt.setText("");
         firstNum = 0;
         secondNum = 0;
+        decimalButtonHit = false;
+        equalButtonHit = false;
     }
 
     @FXML //DELETE
@@ -323,6 +336,7 @@ public class CalculatorController {
       else{
           calcDisplay.appendText(".");
           equalButtonHit = false;     //reset
+          decimalButtonHit = true;
       }
 
     }
