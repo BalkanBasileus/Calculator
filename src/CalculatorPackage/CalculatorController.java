@@ -24,7 +24,7 @@ public class CalculatorController {
     private boolean percentHit = false; //If a % has been calculated.
     private String percent = "";        //Displays % in historyPrompt.
 
-    boolean equalButtonHit = false;
+    boolean equalButtonHit = false;     
     private String precisionOne = "#0.0";
     private String precisionTwo = "#0.00";
     private String precisionThree = "#0.000";
@@ -322,6 +322,7 @@ public class CalculatorController {
 
       else{
           calcDisplay.appendText(".");
+          equalButtonHit = false;     //reset
       }
 
     }
@@ -331,11 +332,14 @@ public class CalculatorController {
 
         //Calculator Engine
 
-        equalButtonHit = true; //After answer if user hits another number, discard previous entry.
-
         switch (operator){
 
             case 'x' :
+
+                //If user hits equal again, do nothing. Skip switch.
+                if(equalButtonHit){
+                    break;
+                }
 
                 String valueMult = calcDisplay.getText();                 //get second num from screen
                 this.secondNum = Double.parseDouble(valueMult);
@@ -354,6 +358,11 @@ public class CalculatorController {
 
             case '-' :
 
+                //If user hits equal again, do nothing. Skip switch.
+                if(equalButtonHit){
+                    break;
+                }
+
                 String valueSub = calcDisplay.getText();                 //get second num from screen
                 this.secondNum = Double.parseDouble(valueSub);
                 double answerSub = (this.firstNum - this.secondNum);     //arithmetic
@@ -370,6 +379,11 @@ public class CalculatorController {
                 break;
 
             case '+' :
+
+                //If user hits equal again, do nothing. Skip switch.
+                if(equalButtonHit){
+                    break;
+                }
 
                 String valueAdd = calcDisplay.getText();                  //get second num from screen
                 this.secondNum = Double.parseDouble(valueAdd);
@@ -388,6 +402,11 @@ public class CalculatorController {
 
             case '/' :
 
+                //If user hits equal again, do nothing. Skip switch.
+                if(equalButtonHit){
+                    break;
+                }
+
                 String valueDiv = calcDisplay.getText();                   //get second num from screen
                 this.secondNum = Double.parseDouble(valueDiv);
                 double answerDiv = (this.firstNum / this.secondNum);       //arithmetic
@@ -403,6 +422,11 @@ public class CalculatorController {
                 }
                 break;
         }
+
+
+        //After answer if user hits another number, discard previous entry.
+        //Or if user hits equal again, do nothing.
+        equalButtonHit = true;
 
     }
 
